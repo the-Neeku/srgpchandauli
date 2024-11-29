@@ -1,0 +1,183 @@
+<html>
+
+<head>
+    <style>
+        header {
+            background-color: orange;
+        }
+
+        #aa {
+            width: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-width: 28cm;
+            min-height: 15cm;
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+        }
+
+        main {
+            background-color: none;
+        }
+
+        ul {
+            list-style-type: none;
+            background-color: darkblue;
+            color: white;
+            margin: 0;
+        }
+
+        ul li {
+            display: inline-block;
+            padding: 10 25 10 26;
+        }
+        .list1,.list2{
+            width: max-content;
+            background-color: darkblue;
+        }
+        .list,.list1,.list2 {
+            display: none;
+        }
+        ul li ul li:hover .list1 {
+            display: block;
+            position: absolute;
+            margin-top: -0.2cm;
+            margin-left: 3.95cm;
+        }
+        ul li ul li:hover .list2 {
+            display: block;
+            position: absolute;
+            margin-top: -0.2cm;
+            margin-left: 3.95cm;
+        }
+        ul li:hover .list {
+            display: block;
+            position: absolute;
+            margin-top: 0.27cm;
+            margin-left: -0.7cm;
+        }
+
+        .list ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .list ul li {
+            display: block;
+        }
+
+        li:hover {
+            background-color: darkgreen;
+        }
+       
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        pre {
+            font-size: 20;
+            font-family: 'jost', sans-serif;
+        }
+
+        #CONTACT {
+            border-style: solid;
+            height: fit-content;
+            width: fit-content;
+            margin: auto;
+            margin-top: 100px;
+            border-radius: 15px;
+            background: red;
+            overflow: hidden;
+            background: url() no-repeat center / cover;
+            border-radius: 10px;
+            box-shadow: 5px 20px 50px #000;
+            color: wheat;
+        }
+
+        #color {
+            background-color: darkgreen;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <table>
+            <tr>
+                <td><img src="9.jpg" height="100px" width="130px" align="center"></td>
+                <td id="aa">
+                    <h1 align="center">SANT RAVIDAS GOVERNMENT POLYTECHNIC</h1>
+                    <h2 align="center">CHAKIA CHANDAULI</h2>
+                    <marquee>( Running At Mahamaya Polytechnic of Information Technology Dhanapur Chandauli )
+                    </marquee>
+                </td>
+                <td><img src="8.jpg" height="100px" width="130px" align="center"></td>
+            </tr>
+        </table>
+    </header>
+    <hr>
+    <main>
+        <nav>
+            <ul>
+                <li><a href="MAIN.html">HOME</a></li>
+                <li><a href="FACILITY.html">FACILITY</a></li>
+                <li><a href="ADDMISSION.html">ADDMISSION</a></li>
+                <li>LOG IN
+                    <div class="list">
+                        <ul>
+                            <li>STUDENT LOG IN
+                                <div class="list1">
+                                    <ul>
+                                        <li><a href="https://bteup.ac.in/Eseva/Outerpages/StudentLogin.aspx">BTE-UP LOG IN</a></li>
+                                        <LI><a href="https://urise.up.gov.in/student/login">URISE LOG IN</a></LI>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>INSTITUTE LOG IN
+                                <div class="list2">
+                                    <ul>
+                                        <li><a href="https://bteup.ac.in/webapp/Institutelogin.aspx">BTE-UP LOG IN</a></li>
+                                        <li><a href="https://urise.up.gov.in/user/login">URISE LOG IN</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>COURSES
+                    <div class="list">
+                        <ul>
+                            <li><a href="https://shorturl.at/OU7E6">COMPUTER SCIENCE & ENGINEERING</a></li>
+                            <li><a href="https://shorturl.at/qfBZc">ELECTRONICS ENGINEERING</a></li>
+                            <li><a href="https://shorturl.at/tUN1a">INSTUMENTATION & CONTROL</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="https://result.bteexam.com/even/main/">RESULT</a></li>
+                <li id="color"><a href="CONTACT.html">CONTACT US</a></li>
+                <li><a href="ABOUT.html">ABOUT US</a></li>
+            </ul>
+        </nav>
+        <br>
+        <div id="CONTACT">
+            <h1 align="center"><u>CONTACT US</u></h1>
+            <pre>
+  <b>E-mail:</b> srgpchandauli@gmail.com  
+  <b>Telephone (Mobile):</b> 8423382546  
+  <b>Address:-</b>
+    <b>Village:</b> Rampur Dhunnu
+    <b>Block:</b> Sahabganj
+    <b>Tehsil:</b> Chakia
+    <b>Dist.:</b> Chandauli
+    <b>Pin:</b> 232103
+  <b>Note:</b> Currently institute is running at Mahamaya Polytechnic of I.T., Dhanapur, Chandauli.  
+                </pre>
+        </div>
+    </main>
+</body>
+
+</html>

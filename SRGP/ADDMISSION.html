@@ -1,0 +1,235 @@
+<html>
+
+<head>
+    <style>
+        header {
+            background-color: orange;
+        }
+
+        #aa {
+            width: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-width: 28cm;
+            min-height: 22cm;
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+        }
+
+        #form {
+            color: wheat;
+            height: max-contant;
+            width: 60%;
+            margin: auto;
+            border: solid black;
+            background: red;
+            overflow: hidden;
+            background: url() no-repeat center / cover;
+            border-radius: 10px;
+            box-shadow: 5px 20px 50px #000;
+        }
+        .btn-3d {
+            background: linear-gradient(to bottom, blue, rgb(27, 27, 140)); /* Gradient for 3D effect */
+            color: white;
+            font-size: 15px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 5px darkblue; /* Creates the shadow for the 3D effect */
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Hover effect */
+        .btn-3d:hover {
+            box-shadow: 0 2px blue;
+            transform: translateY(3px); /* Mimics pressing the button */
+        }
+
+        /* Active state */
+        .btn-3d:active {
+            box-shadow: 0 0 darkblue;
+            transform: translateY(5px);
+        }
+
+        form {
+            padding: 20;
+        }
+
+        ul {
+            list-style-type: none;
+            background-color: darkblue;
+            color: white;
+            margin: 0;
+        }
+        .list1,.list2{
+            width: max-content;
+            background-color: darkblue;
+        }
+        ul li {
+            display: inline-block;
+            padding: 10 25 10 26;
+        }
+        
+        .list,.list1,.list2 {
+            display: none;
+        }
+        ul li ul li:hover .list1 {
+            display: block;
+            position: absolute;
+            margin-top: -0.2cm;
+            margin-left: 3.95cm;
+        }
+        ul li ul li:hover .list2 {
+            display: block;
+            position: absolute;
+            margin-top: -0.2cm;
+            margin-left: 3.95cm;
+        }
+        ul li:hover .list {
+            display: block;
+            position: absolute;
+            margin-top: 0.27cm;
+            margin-left: -0.7cm;
+        }
+
+        .list ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .list ul li {
+            display: block;
+        }
+
+        li:hover {
+            background-color: darkgreen;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        #photo {
+            height: 4.5cm;
+            width: 3.5cm;
+            color: #000;
+        }
+        #file{
+            height: 5cm;
+            width: 6.3cm;
+            float: right;
+        }
+        .photo{
+            height: 1cm;
+            width: max-content;
+            margin: auto;
+        }
+
+        #color {
+            background-color: darkgreen;
+        }
+        #button{
+            width: max-content;
+            padding-left: 34%;
+        }
+        button{
+            justify-content: center;
+            border-radius: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <table>
+            <tr>
+                <td><img src="9.jpg" height="100px" width="130px" align="center"></td>
+                <td id="aa">
+                    <h1 align="center">SANT RAVIDAS GOVERNMENT POLYTECHNIC</h1>
+                    <h2 align="center">CHAKIA CHANDAULI</h2>
+                    <marquee>( Running At Mahamaya Polytechnic of Information Technology Dhanapur Chandauli )
+                    </marquee>
+                </td>
+                <td><img src="8.jpg" height="100px" width="130px" align="center"></td>
+            </tr>
+        </table>
+    </header>
+    <hr>
+    <main>
+        <nav>
+            <ul>
+                <li><a href="MAIN.html">HOME</a></li>
+                <li><a href="FACILITY.html">FACILITY</a></li>
+                <li id="color"><a href="ADDMISSION.html">ADDMISSION</a></li>
+                <li>LOG IN
+                    <div class="list">
+                        <ul>
+                            <li>STUDENT LOG IN
+                                <div class="list1">
+                                    <ul>
+                                        <li><a href="https://bteup.ac.in/Eseva/Outerpages/StudentLogin.aspx">BTE-UP LOG IN</a></li>
+                                        <LI><a href="https://urise.up.gov.in/student/login">URISE LOG IN</a></LI>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>INSTITUTE LOG IN
+                                <div class="list2">
+                                    <ul>
+                                        <li><a href="https://bteup.ac.in/webapp/Institutelogin.aspx">BTE-UP LOG IN</a></li>
+                                        <li><a href="https://urise.up.gov.in/user/login">URISE LOG IN</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>                <li>COURSES
+                    <div class="list">
+                        <ul>
+                            <li><a href="https://shorturl.at/OU7E6">COMPUTER SCIENCE & ENGINEERING</a></li>
+                            <li><a href="https://shorturl.at/qfBZc">ELECTRONICS ENGINEERING</a></li>
+                            <li><a href="https://shorturl.at/tUN1a">INSTUMENTATION & CONTROL</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="https://result.bteexam.com/even/main/">RESULT</a></li>
+                <li><a href="CONTACT.html">CONTACT US</a></li>
+                <li><a href="ABOUT.html">ABOUT US</a></li>
+            </ul>
+        </nav>
+        <br>
+        <div id="form">
+            <h3 align="center">SANT RAVIDAS GOVERNMENT POLYTECHNIC</h3>
+            <h4 align="center">CHAKIA CHANDAULI</h4>
+            <h4 align="center">(<U>Addmission Form</U>)</h4><br>
+            <form>
+                <div id="file" align="center">
+                    <div id="photo" align="center">
+                        <img alt="student photo" src="" height="99%" width="99%" border="1">
+                    </div>
+                    <div class="photo">
+                        <input type="file" name="img" accept="image/*" required>
+                    </div>
+                </div>
+                Name: <input type="name" name="sname" placeholder="Enter Your Name" required><br><br>
+                Father's Name: <input type="name" name="fname" placeholder="Enter Your father's Name" required><br><br>
+                DOB: <input type="date" name="bday" required><br><br>
+                Gender: <input type="radio" name="gender" value="male">Male <input type="radio" name="gender"
+                    value="female">Female<br><br>
+                Email: <input type="email" name="email" placeholder="example@gmail.com"><br><br>
+                Qualification: <input type="checkbox" name="quali" value="10">10TH
+                <input type="checkbox" name="quali" value="12">12TH <input type="checkbox" name="quali"
+                    value="other">Other<br><br>
+                Address: <input type="address" name="address" placeholder="Enter Your Address"><br><br>
+                <div id="button">
+                    <button class="btn-3d" value="submit">Submit</button> <button class="btn-3d" value="Reset">Reset</button><br>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>
