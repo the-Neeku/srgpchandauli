@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 
-app = Flask(_name_) # type: ignore
+app = Flask(__name__) 
 
 @app.route('/')
 def home():
@@ -22,5 +22,5 @@ def contact():
 def about():
     return render_template('ABOUT.html')
 
-if _name_ == '_main_': # type: ignore
+if __name__ == '_main_': 
     app.run(debug=True)
