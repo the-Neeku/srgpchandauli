@@ -6,19 +6,19 @@ app = Flask(__name__)
 def home():
     return render_template('MAIN.html')
 
-@app.route('/FACILITY')
+@app.route('/facility')
 def facility():
     return render_template('FACILITY.html')
 
-@app.route('/ADDMISSION')
+@app.route('/admission')
 def admission():
     return render_template('ADDMISION.html')
 
-@app.route('/CONTACT')
+@app.route('/contact')
 def contact():
     return render_template('CONTACT.html')
 
-@app.route('/ABOUT')
+@app.route('/about')
 def about():
     return render_template('ABOUT.html')
 
