@@ -10,8 +10,8 @@ def home():
 def facility():
     return render_template('FACILITY.html')
 
-@app.route('/admission')
-def admission():
+@app.route('/addmission')
+def addmission():
     return render_template('ADDMISSION.html')
 
 @app.route('/contact')
