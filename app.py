@@ -12,7 +12,7 @@ def facility():
 
 @app.route('/admission')
 def admission():
-    return render_template('ADDMISION.html')
+    return render_template('ADDMISSION.html')
 
 @app.route('/contact')
 def contact():
