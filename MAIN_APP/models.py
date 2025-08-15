@@ -132,9 +132,9 @@ class Facility(models.Model):
 # ======================
 class Course(models.Model):
     course_name=models.CharField(max_length=100)
-    Duration = models.CharField(max_length=100, blank=True)
-    seats = models.IntegerField(max_length=100, blank=True)
-    Eligibility = models.CharField(max_length=100, blank=True)
+    Duration = models.CharField(max_length=100)
+    seats = models.IntegerField()
+    Eligibility = models.CharField(max_length=100)
     syllabus=models.FileField(blank=True, upload_to='syllabus/')
     details=models.TextField(blank=True, null=True)
     course_desc=models.TextField(blank=True, null=True)

@@ -2,8 +2,6 @@
 {% load static %}
 {% block extra_links %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
-<link rel="stylesheet" href="{% static 'css/form.css' %}">
-<script src="{% static 'js/index.js' %}"></script>
 {% if messages %}
     {% for message in messages %}
     {{ message|safe }}
