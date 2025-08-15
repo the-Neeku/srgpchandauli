@@ -1,0 +1,17 @@
+body {
+    background: white;
+}
+
+
+header {
+    color: white;
+}
+
+main {
+    color: black;
+}
+
+#boxes {
+    background: #9DC3E6;
+    color: black;
+}

@@ -1,0 +1,49 @@
+body {
+  height: max-content;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 100px;
+  gap: 10px;
+  padding: 10px;
+  justify-content: center;
+}
+
+.box {
+  padding: 10px;
+  height: auto;
+  text-align: justify;
+  border-radius: 10px;
+  box-shadow: 5px 10px 25px #000;
+}
+
+/* Desktop Styles */
+
+@media (min-width: 1024px) {
+  .box {
+    width: 50%;
+    font-size: larger;
+  }
+}
+
+/* Tablet Styles */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .box {
+    width: 60%;
+    font-size: large;
+  }
+}
+
+/* Mobile Styles */
+
+@media (max-width: 767px) {
+  .box {
+    width: 70%;
+    font-size: medium;
+  }
+}

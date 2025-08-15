@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg" style="border: 1px solid black;background-color: #9DC3E6; width: 100%;">
+  <div class="container-fluid">
+    <a class="navbar-brand">Wellcome, {{ name }} </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'teacher_dashboard' %}">Home</a>
+        </li>
+        {% if post == 'Librarian' %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">
+            Library
+          </a>
+          <ul class="dropdown-menu" style="background-color: #9DC3E6;">
+            <li><a class="dropdown-item" href="{% url 'book_details' %}">Book Details</a></li>
+            <li><a class="dropdown-item" href="{% url 'book_status' %}">Book Status</a></li>
+            <li><a class="dropdown-item" href="{% url 'book_issue' %}">Book Issue</a></li>
+          </ul> 
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'teacher_profile' %}">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'change_password' %}">Change Password</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'teacher_logout' %}">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

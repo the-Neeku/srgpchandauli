@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_links %}
+<link rel="stylesheet" href="{% static 'css/contact.css'%}">
+{% endblock %}
+{% block content %}
+      <main>
+        <div class="container">
+          {% if messages %}
+          <div id="message-container">
+              {% for message in messages %}
+              <h5 class="text-center text-danger">{{ message | safe }}</h5>
+              {% endfor %}
+          </div>
+          {% endif %}
+          {% if contact %}
+            <div class="box" id="boxes">
+              <h1 align="center">CONTACT</h1>
+              <br />
+              <p>
+                <i class="fa fa-map-marker"></i>  {{ contact.address }}
+              </p>
+              <p><i class="fa fa-phone"></i> {{ contact.phone }}</p>
+              <p><i class="fa fa-envelope"></i> {{ contact.email }}</p>
+              {% if contact.note %}
+              <p>
+                <i class="fa fa-pencil"></i> {{ contact.note | safe }}
+              </p>
+              {% endif %}
+            </div>
+            <div class="box" id="boxes">
+              <iframe src="{{ contact.map_link }}" frameborder="0"></iframe>
+            </div>
+          {% endif %}
+          <br /><br />
+        </div>
+        <br />
+        <br /><br />
+      </main>
+      <br /><br />
+{% endblock %}

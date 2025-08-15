@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_links %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+<link rel="stylesheet" href="{% static '/css/form.css' %}">
+{% endblock %}
+{% block content %}
+    <main>
+        <div class="signup-form box" id="boxes">
+            <form  method="post">
+                {% csrf_token %}
+                <h2 align="center">Student Login</h2>
+
+                {% if messages %}
+                <div id="message-container">
+                    {% for message in messages %}
+                    <h5 class="text-center text-danger">{{ message | safe }}</h5>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <!-- Enrollment -->
+                <label for="username">Enrollment No:</label>
+                <input type="text" name="enrollment_no" placeholder="Enter enrollment number" required id="id_enrollment_no" value="{{ form.enrollment_no.value|default_if_none:'' }}">    
+                {% if form.enrollment_no.errors %}
+                    <div style="color:red;">{{ form.enrollment_no.errors.0 }}</div>
+                {% endif %}
+                <!-- DoB -->
+                <label for="pass">Date of Birth:</label>
+                <input type="text" name="dob" placeholder="DD-MM-YYYY" onfocus="(this.type='date')" onblur="if(this.value===''){this.type='text'}" required id="id_dob" value="{{ form.dob.value|default_if_none:'' }}">
+                {% if form.dob.errors %}
+                    <div style="color:red;">{{ form.dob.errors.0 }}</div>
+                {% endif %}
+                
+                <hr>
+                <!-- Submit button -->
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}

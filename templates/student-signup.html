@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_links %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<script src="{% static 'js/massage.js' %}"></script>
+<style>
+    .col-md-4 label {
+    margin-top: 0 !important;
+}
+</style>
+{% endblock %}
+{% block content %}
+      <main>
+            <div class="container my-5 signup-form" id="boxes" style="box-shadow: 5px 10px 25px #000; padding: 30px; width: 90%; margin:auto;">
+                <!-- OTP verification -->
+                {% if otp_step %}
+                    <h2 class="text-center mb-4">Enter OTP</h2>
+                    {% if messages %}
+                    <div id="message-container">
+                        {% for message in messages %}
+                        <h5 class="text-center text-danger">{{ message | safe }}</h5>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="step" value="otp">
+                        <input type="text" name="otp" placeholder="Enter OTP" required>
+                        <br>
+                        <button type="submit">Verify</button>
+                    </form>
+
+                <!-- full registration form -->
+                {% elif full_reg %}
+                    <h2 class="text-center mb-4">Student Registration</h2>
+                    {% if messages %}
+                    <div id="message-container">
+                        {% for message in messages %}
+                        <h5 class="text-center text-danger">{{ message | safe }}</h5>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <form method="POST" enctype="multipart/form-data" class="p-4 shadow-none">
+                        {% csrf_token %}
+                        <input type="hidden" name="step" value="full_reg">
+                        <!-- 1. Basic Details -->
+                        <h4 class="mb-3">1. Basic Details</h4>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                {{ form.enroll.label|title }} <input type="text" name="enroll" id="id_enroll" value="{{ enroll }}" readonly>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.student_name.label|title }} <input type="text" name="student_name" id="id_student_name" value="{{ name }}" readonly>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.father_name.label|title }} {{ form.father_name }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.mother_name.label|title }} {{ form.mother_name }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.gender.label|title }} {{ form.gender }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.dob.label|title }} {{ form.dob }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.aadhaar_number.label|title }} {{ form.aadhaar_number }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.blood_group.label|title }} {{ form.blood_group }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.profile_photo.label|title }} {{ form.profile_photo }}
+                            </div>
+                        </div>
+
+                        <!-- 2. Contact Details -->
+                        <h4 class="mt-4 mb-3">2. Contact Details</h4>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                {{ form.student_mobile.label|title }} {{ form.student_mobile }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.parent_mobile.label|title }} {{ form.parent_mobile }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.email.label|title }} <input type="text" name="email" id="id_email" value="{{ email }}" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.permanent_address.label|title }} {{ form.permanent_address }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.current_address.label|title }} {{ form.current_address }}
+                            </div>
+                        </div>
+
+                        <!-- 3. Academic Details -->
+                        <h4 class="mt-4 mb-3">3. Academic Details</h4>
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                {{ form.admission_year.label|title }} {{ form.admission_year }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                {{ form.branch.label|title }} {{ form.branch }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                {{ form.mode_of_admission.label|title }} {{ form.mode_of_admission }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                {{ form.admission_type.label|title }} {{ form.admission_type }}
+                            </div>
+                        </div>
+
+                        <!-- 4. Previous Education -->
+                        <h4 class="mt-4 mb-3">4. Previous Education</h4>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                {{ form.tenth_school.label|title }} {{ form.tenth_school }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                {{ form.tenth_board.label|title }} {{ form.tenth_board }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                {{ form.tenth_passing_year.label|title }} {{ form.tenth_passing_year }}
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                {{ form.tenth_percentage.label|title }} {{ form.tenth_percentage }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.ITI_or_Twelfth.label_tag }} {{ form.ITI_or_Twelfth }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                {{ form.board.label|title }} {{ form.board }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                {{ form.passing_year.label|title }} {{ form.passing_year }}
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                {{ form.percentage.label|title }} {{ form.percentage }}
+                            </div>
+                        </div>
+
+                        <!-- 5. Documents Upload -->
+                        <h4 class="mt-4 mb-3">5. Documents Upload</h4>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                {{ form.aadhaar_card.label|title }} {{ form.aadhaar_card }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.caste_certificate.label|title }} {{ form.caste_certificate }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.domicile_certificate.label|title }} {{ form.domicile_certificate }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.transfer_certificate.label|title }} {{ form.transfer_certificate }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.character_certificate.label|title }} {{ form.character_certificate }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.marksheets.label|title }} {{ form.marksheets }}
+                            </div>
+                        </div>
+
+                        <!-- 6. Guardian Details -->
+                        <h4 class="mt-4 mb-3">6. Guardian Details</h4>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                {{ form.father_occupation.label|title }} {{ form.father_occupation }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.mother_occupation.label|title }} {{ form.mother_occupation }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.annual_income.label|title }} {{ form.annual_income }}
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mt-4">Subitm</button>
+                    </form>
+                <!-- base form -->
+                {% else %}
+                    <h2 class="text-center mb-4">Student Registration</h2>
+                    {% if messages %}
+                    <div id="message-container">
+                        {% for message in messages %}
+                        <h5 class="text-center text-danger">{{ message | safe }}</h5>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <form method="POST" enctype="multipart/form-data" class="p-4 shadow-none">
+                        {% csrf_token %}
+                        <input type="hidden" name="step" value="basic">
+                        <!-- 1. Basic Details -->
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                {{ form.enroll.label|title }} {{ form.enroll }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.student_name.label|title }} {{ form.student_name }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.email.label|title }} {{ form.email }}
+                            </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-4">Send OTP</button>
+                    </form>
+                {% endif %}
+            </div>
+      </main>
+{% endblock %}

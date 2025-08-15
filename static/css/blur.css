@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 🚀 केवल `.container` के अंदर के `div` पर ही Effect होगा */
+
+#boxes {
+    backdrop-filter: none;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* 💡 Hover पर सिर्फ वही `box` Zoom होगा */
+.container1 #boxes:hover,
+.container2 #boxes:hover,
+.container #boxes:hover {
+    transform: scale(1.04);
+    z-index: 10;
+}
+
+/* 🌟 सिर्फ `.container` के अंदर के `div` Blur होंगे, Body के बाकी कंटेंट नहीं */
+.container1:hover #boxes,
+.container2:hover #boxes,
+.container:hover #boxes {
+    opacity: 0.6;
+}
+
+/* Hover वाले `box` को Blur से बचाने के लिए */
+.container1 #boxes:hover,
+.container2 #boxes:hover,
+.container #boxes:hover {
+    opacity: 1;
+}

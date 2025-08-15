@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_links %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<script src="{% static 'js/massage.js' %}"></script>
+<style>
+  .profile-header {
+    background-color: #0d6efd;
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    position: relative;
+  }
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid white;
+    margin-top: -75px;
+  }
+  .section-card {
+    margin-top: 2rem;
+  }
+  .section-card h5 {
+    font-weight: bold;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 0.5rem;
+  }
+</style>
+{% endblock %}
+{% block content %}
+      <main>
+        {% include "stunav.html" %}
+        {% if messages %}
+        <div id="message-container">
+            {% for message in messages %}
+            <h5 class="text-center text-danger">{{ message | safe }}</h5>
+            {% endfor %}
+        </div>
+        {% endif %}
+            <div class="container my-5 signup-form" id="boxes" style="box-shadow: 5px 10px 25px #000; padding: 30px; width: 90%; margin:auto;">
+
+                <!-- Profile Header -->
+            <div class="profile-header">
+                <img src="{{ student.profile_photo.url }}" 
+                    alt="Profile Picture" class="profile-picture">
+                <h2 class="mt-3">{{ student.student_name }}</h2>
+                <p>{{ student.email }}</p>
+            </div>
+
+            <!-- Personal Details -->
+            <div class="section-card shadow-none p-3">
+                <h4>Personal Details</h4><hr>
+                <label>Enrollment No:</label>
+                <input type="text" value="{{ student.enroll }}" readonly>
+
+                <label>Full Name:</label>
+                <input type="text" value="{{ student.student_name }}" readonly>
+
+                <label>Father's Name:</label>
+                <input type="text" value="{{ student.father_name }}" readonly>
+
+                <label>Mother's Name:</label>
+                <input type="text" value="{{ student.mother_name }}" readonly>
+
+                <label>Gender:</label>
+                <input type="text" value="{{ student.gender }}" readonly>
+
+                <label>Date of Birth:</label>
+                <input type="text" value="{{ student.dob }}" readonly>
+
+                <label>Blood Group:</label>
+                <input type="text" value="{{ student.blood_group }}" readonly>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="section-card shadow-none p-3">
+                <h4>Contact Details</h4><hr>
+                <label>Student Mobile:</label>
+                <input type="text" value="{{ student.student_mobile }}" readonly>
+
+                <label>Parent Mobile:</label>
+                <input type="text" value="{{ student.parent_mobile }}" readonly>
+
+                <label>Email:</label>
+                <input type="text" value="{{ student.email }}" readonly>
+
+                <label>Permanent Address:</label>
+                <input type="text" value="{{ student.permanent_address }}" readonly>
+
+                <label>Current Address:</label>
+                <input type="text" value="{{ student.current_address }}" readonly>
+            </div>
+
+            <!-- Academic Details -->
+            <div class="section-card shadow-none p-3">
+                <h4>Academic Details</h4><hr>
+                <label>Admission Year:</label>
+                <input type="text" value="{{ student.admission_year }}" readonly>
+
+                <label>Branch:</label>
+                <input type="text" value="{{ student.branch }}" readonly>
+
+                <label>Mode of Admission:</label>
+                <input type="text" value="{{ student.mode_of_admission }}" readonly>
+
+                <label>Admission Type:</label>
+                <input type="text" value="{{ student.admission_type }}" readonly>
+            </div>
+
+            <!-- Previous Education -->
+            <div class="section-card shadow-none p-3">
+                <h4>Previous Education</h4><hr>
+                <label>10th School:</label>
+                <input type="text" value="{{ student.tenth_school }}" readonly>
+
+                <label>10th Board:</label>
+                <input type="text" value="{{ student.tenth_board }}" readonly>
+
+                <label>10th Passing Year:</label>
+                <input type="text" value="{{ student.tenth_passing_year }}" readonly>
+
+                <label>10th Percentage:</label>
+                <input type="text" value="{{ student.tenth_percentage }}%" readonly>
+
+                <label>12th / ITI School:</label>
+                <input type="text" value="{{ student.ITI_or_Twelfth }}" readonly>
+
+                <label>Board:</label>
+                <input type="text" value="{{ student.board }}" readonly>
+
+                <label>Passing Year:</label>
+                <input type="text" value="{{ student.passing_year }}" readonly>
+
+                <label>Percentage:</label>
+                <input type="text" value="{{ student.percentage }}%" readonly>
+            </div>
+
+            <!-- Guardian Details -->
+            <div class="section-card shadow-none p-3">
+                <h4>Guardian Details</h4><hr>
+                <label>Father Occupation:</label>
+                <input type="text" value="{{ student.father_occupation }}" readonly>
+
+                <label>Mother Occupation:</label>
+                <input type="text" value="{{ student.mother_occupation }}" readonly>
+
+                <label>Annual Income:</label>
+                <input type="text" value="{{ student.annual_income }}" readonly>
+            </div>
+        </div>
+
+      </main>
+{% endblock %}

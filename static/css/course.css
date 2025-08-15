@@ -1,0 +1,65 @@
+body {
+  height: max-content;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 100px;
+  gap: 10px;
+  padding: 10px;
+  justify-content: center;
+}
+
+.box {
+  padding: 10px;
+  height: auto;
+  text-align: justify;
+  border-radius: 10px;
+  box-shadow: 5px 10px 25px #000;
+}
+
+/* Desktop Styles */
+
+@media (min-width: 1024px) {
+  .box {
+    width: 80%;
+    font-size: larger;
+  }
+  .first, .second{
+    width: 90%;
+    margin: auto;
+    padding: 5px;
+  }
+}
+
+/* Tablet Styles */
+
+@media (min-width: 767px) and (max-width: 1023px) {
+  .box {
+    width: 90%;
+    font-size: large;
+  }
+  .first, .second{
+    width: 90%;
+    margin: auto;
+    padding: 5px;
+  }
+  
+}
+
+/* Mobile Styles */
+
+@media (max-width: 767px) {
+  .box {
+    width: 95%;
+    font-size: medium;
+  }
+  .first, .second{
+    width: 95%;
+    margin: auto;
+    padding: 5px;
+  }
+}

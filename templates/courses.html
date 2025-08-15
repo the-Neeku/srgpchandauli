@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_links %}
+<link rel="stylesheet" href="{% static 'css/course.css'%}">
+{% endblock %}
+{% block content %}
+      <main>
+        <div class="container">
+          {% if messages %}
+          <div id="message-container">
+              {% for message in messages %}
+              <h5 class="text-center text-danger">{{ message | safe }}</h5>
+              {% endfor %}
+          </div>
+          {% endif %}
+          {% for n in course %}
+          <div class="box" id="boxes" style="padding-top: 20px;">
+            <h2 align="center">{{n.course_name}}</h2>
+            <div class="first">
+              <p><b>Intake (Seats)-</b>{{ n.seats }} Seats</p>
+              <p><b>Duration-</b>{{ n.Duration }}</p>
+              <p><b>Eligibility-</b>{{ n.Eligibility }}</p>
+            {{n.details | safe}}
+            </div>
+            <div class="second">
+            {{n.course_desc | safe}}
+            </div>
+          </div>
+          <div style="width: 100%; padding: 5px; margin-top: 30px;">
+            <p align="center"><a href="{{n.syllabus.url}}" style="color: black;">If you want to visit our syllabus<span style="color: blue;"> Click here...</span></a></p>
+          <div>
+          {% endfor %}
+        </div>
+        <br /><br /><br />
+      </main>
+{% endblock %}

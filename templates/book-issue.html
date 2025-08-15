@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_links %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<script src="{% static 'js/massage.js' %}"></script>
+<style>
+    input{display:none; width: 100%; height: 1cm; border-radius: 10px; border: 1px solid slategray;}
+</style>
+<script>
+  function enableEdit(id) {
+    let row = document.getElementById(`row-${id}`);
+    let button = document.getElementById(`btn-${id}`);
+
+    if (button.dataset.mode === "edit") {
+        // Second click → submit
+        row.querySelector('form').submit();
+    } else {
+        // First click → enable edit mode
+        row.querySelectorAll('.view-mode').forEach(el => el.style.display = 'none');
+        row.querySelectorAll('.edit-mode').forEach(el => el.style.display = 'block');
+
+        button.innerText = 'Save';
+        button.classList.remove('btn-success');
+        button.classList.add('btn-primary');
+
+        // Mark button as edit mode
+        button.dataset.mode = "edit";
+    }
+}
+function enableAdd() {
+    let row = document.getElementById('new-row');
+    let button = document.getElementById('add-btn');
+
+    if (button.dataset.mode === "edit") {
+        button.type = "submit"; // Yaha galti thi — ab ye form submit karega
+    } else {
+        row.querySelectorAll('.edit-mode').forEach(el => el.style.display = 'block');
+        button.innerText = 'Save';
+        button.classList.remove('btn-info');
+        button.classList.add('btn-primary');
+        button.dataset.mode = "edit";
+    }
+}
+</script>
+
+{% endblock %}
+{% block content %}
+      <main>
+        {% include "usernav.html" %}
+            <div class="row">
+              <div class="col-sm-11 mx-auto mt-5 mb-5" id="boxes" style="box-shadow: 5px 10px 25px #000; padding: 30px; width: 90%; margin:auto; border-radius: 10px;">
+                {% if messages %}
+                <div id="message-container">
+                    {% for message in messages %}
+                    <h5 class="text-center text-danger">{{ message | safe }}</h5>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <h2 class="text-center">Book Issue</h2>
+                <div class="table-responsive">
+                <table class="table table-striped table-bordered" style="border: black;">
+                  <thead>
+                    <tr class="text-center">
+                      <th scope="col" style="background-color: #9DC3E6;">SR. No.</th>
+                      <th scope="col" style="background-color: #9DC3E6;">Book ID</th>
+                      <th scope="col" style="background-color: #9DC3E6;">Book Holder</th>
+                      <th scope="col" style="background-color: #9DC3E6;" colspan="2">Dates</th>
+                      <th scope="col" style="background-color: #9DC3E6;">Fine</th>
+                      <th scope="col" style="background-color: #9DC3E6;" colspan="2">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for n in issues %}
+                    <tr id="row-{{ n.id }}"  class="text-center">
+                        <form method="post" action="{% url 'update_book_issue' n.id %}">
+                            {% csrf_token %}
+
+                            <th class="text-center">{{ forloop.counter }}</th>
+
+                            <!-- book_set dropdown -->
+                            <td>
+                                <span class="view-mode">{{ n.book_set }}</span>
+                                <select name="book_set" class="edit-mode form-control" style="display:none;">
+                                    {% for c in update %}
+                                        <option value="{{ c.id }}" {% if n.book_set.id == c.id %}selected{% endif %}>
+                                            {{ c }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+
+                            <!-- Book holder -->
+                            <td>
+                                {% if n.student %}
+                                <span class="view-mode">{{ n.student }}</span>
+                                {% else %}
+                                <span class="view-mode">{{ n.teacher }}</span>
+                                {% endif %}
+                                <select name="student" class="edit-mode form-control" style="display:none;">
+                                    <option value="">---select---</option>
+                                    {% for s in students %}
+                                        <option value="{{ s.enroll }}" {% if n.student and n.student.enroll == s.enroll %}selected{% endif %}>
+                                            {{ s }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                <br><br>
+                                <select name="teacher" class="edit-mode form-control" style="display:none;">
+                                    <option value="">---select---</option>
+                                    {% for t in teachers %}
+                                        <option value="{{ t.teacher_id }}" {% if n.teacher and n.teacher.teacher_id == t.teacher_id %}selected{% endif %}>
+                                            {{ t }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+
+                            <!-- Dates & Fine -->
+                            <td>
+                                <span class="view-mode">Issue Date:</span> <span class="view-mode">{{ n.issue_date }}</span>
+                                <input type="hidden" name="issue_date" value="{{ n.issue_date|date:'Y-m-d' }}" class="edit-mode" style="display:none;">
+                                <br>
+                                <span>Due Date:</span> <span class="view-mode">{{ n.due_date }}</span>
+                                <input type="date" name="due_date" value="{{ n.due_date|date:'Y-m-d' }}" class="edit-mode" style="display:none;">
+                            </td>
+                            <td>
+                                <span>Return Date:</span> <span class="view-mode">{{ n.return_date }}</span>
+                                <input type="date" name="return_date" value="{{ n.return_date|date:'Y-m-d' }}" class="edit-mode" style="display:none;">
+                            </td>
+                            <td>
+                                <span class="view-mode">{{ n.fine }}</span>
+                                <input type="number" step="0.01" name="fine" value="{{ n.fine }}" class="edit-mode" style="display:none;">
+                            </td>
+
+                            <!-- Actions -->
+                            <td>
+                                <button type="button" id="btn-{{ n.id }}" data-mode="view" onclick="enableEdit({{ n.id }})" class="btn btn-success">Update</button>
+                            </td>
+                            <td>
+                                <a href="{% url 'delete_book_issue' n.id %}" onclick="return confirm('Are you sure you want to delete this?');">
+                                    <button type="button" class="btn btn-danger">Delete</button>
+                                </a>
+                            </td>
+                        </form>
+                    </tr>
+                    {% endfor %}
+
+                    <!-- Add new -->
+                    <tr id="new-row">
+                        <form method="post" action="{% url 'book_issue' %}">
+                            {% csrf_token %}
+                            <th>-</th>
+
+                            <!-- book_set dropdown -->
+                            <td>
+                                <select name="book_set" class="edit-mode form-control" style="display:none;" required>
+                                    {% for c in add %}
+                                        <option value="{{ c.id }}">{{ c }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+
+                            <!-- book holder -->
+                            <td>
+                                <select name="student" class="edit-mode form-control" style="display:none;">
+                                    <option disabled selected>---select---</option>
+                                    {% for s in students %}
+                                        <option value="{{ s.enroll }}">{{ s }}</option>
+                                    {% endfor %}
+                                </select>
+                                <br><br>
+                                <select name="teacher" class="edit-mode form-control" style="display:none;">
+                                        <option disabled selected>---select---</option>
+                                    {% for t in teachers %}
+                                        <option value="{{ t.teacher_id }}">{{ t }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+
+                            <td>
+                                <input type="hidden" name="issue_date" value="{{ today|date:'Y-m-d' }}" class="edit-mode" style="display:none;" required>
+                                <span class="edit-mode" style="display: none;">Due Date:</span>
+                                <input type="date" name="due_date" class="edit-mode" style="display: none;" required>
+                            </td>
+                            <td>
+                                <span class="edit-mode" style="display: none;">Return Date:</span>
+                                <input type="date" name="return_date" class="edit-mode" style="display: none;">
+                            </td>
+                            <td>
+                                <input type="number" step="0.01" name="fine" value="0.00" class="edit-mode" style="display:none;">
+                            </td>
+
+                            <!-- Add button -->
+                            <td colspan="2" class="text-center">
+                                <button type="button" id="add-btn" class="btn btn-info" onclick="enableAdd()">Add</button>
+                            </td>
+                        </form>
+                    </tr>
+                </tbody>
+
+                </table>
+                </div>
+              </div>
+            </div>
+      </main>
+{% endblock %}

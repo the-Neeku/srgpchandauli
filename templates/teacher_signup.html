@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_links %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<script src="{% static 'js/massage.js' %}"></script>
+
+<script>
+function check(){
+    var pwd = document.getElementById("id_password").value.trim();
+    var cpwd = document.getElementById("c_password").value.trim();
+    if(pwd != cpwd){
+        document.getElementById("password-result").innerText = "Password mismatch! Check your password...";
+        document.getElementById("password-result").style.color = "red";
+        return false;
+    } else {
+        document.getElementById("password-result").innerText = "";
+        return true;
+    }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="signup-form box" id="boxes">
+
+        {% if otp_step %}
+            <h2>Enter OTP</h2>
+
+            {% if messages %}
+                <div class="message-container-otp">
+                    {% for message in messages %}
+                        <h5 class="text-center text-danger">{{ message|safe }}</h5>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" name="otp" placeholder="Enter OTP" required>
+                <br>
+                <button type="submit">Verify</button>
+            </form>
+
+        {% else %}
+            <h2>Teacher Signup</h2>
+
+            {% if messages %}
+                <div class="message-container-signup">
+                    {% for message in messages %}
+                        <h5 class="text-center text-danger">{{ message|safe }}</h5>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form method="post" onsubmit="return check()">
+                {% csrf_token %}
+
+                <!-- Select Teacher from dropdown -->
+                <label for="teacher">Select Your Name</label>
+                <select name="teacher" id="id_teacher" required>
+                    <option value="" selected disabled>Select Teacher</option>
+                    {% for teacher in form.fields.teacher.queryset %}
+                        <option value="{{ teacher.pk }}">{{ teacher.name }} ({{ teacher.post }})</option>
+                    {% endfor %}
+                </select>
+
+                <!-- Username -->
+                <label for="username">Username</label>
+                <input type="text" name="username" id="id_username" maxlength="25" required>
+
+                <!-- Email -->
+                <label for="email">Email</label>
+                <input type="email" name="email" id="id_email" required>
+
+                <!-- Password -->
+                <label for="password">Password</label>
+                <input type="password" name="password" id="id_password" required>
+
+                <!-- Confirm Password -->
+                <label for="c_password">Confirm Password</label>
+                <input type="password" name="c_password" id="c_password" required>
+                <p id="password-result"></p>
+                <hr>
+
+                <!-- Submit Button -->
+                <button type="submit">Send OTP</button>
+            </form>
+        {% endif %}
+
+    </div>
+</main>
+{% endblock %}

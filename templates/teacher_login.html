@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_links %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<script src="{% static 'js/massage.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <main>
+        <div class="signup-form box" id="boxes">
+            {% if messages %}
+            <div id="message-container">
+                {% for message in messages %}
+                <h5 class="text-center text-danger">{{ message | safe }}</h5>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                <h2 align="center">Institute Login</h2>
+                <!-- Username -->
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="id_username" maxlength="25" placeholder="Enter username" required>
+                <!-- Password -->
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="id_password" placeholder="Enter password" required>                
+                <hr>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}

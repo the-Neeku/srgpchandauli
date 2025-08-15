@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_links %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<script src="{% static 'js/index.js' %}"></script>
+{% if messages %}
+    {% for message in messages %}
+    {{ message|safe }}
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
+{% block content %}
+      <main>
+          <article id="mid">
+              <section class="container">
+                  <div class="slideshow" id="boxes">
+                      <div class="slides">
+                        {% for n in photos %}
+                        <img src="{{ n.photo.url }}" alt="{{n.filename}}">
+                        {% endfor %}
+                      </div>
+                  </div><br><br>
+                  <a href="/principal/">
+                  <div class="box" id="boxes">
+                    {% if principal_current %}
+                      <div class="same" style="float: left;">
+                          <img src="{{ principal_current.photo.url }}" alt="{{ principal_current.filename }}">
+                          <br><br><h3 id="aside">PRINCIPAL</h3>
+                      </div>
+                      <div class="diffrent" style="float: right;">
+                          <div class="text">
+                              <h1 class="head">{{ principal_current.name }}<h1>
+                              <p>PRINCIPAL<br>
+                              Sant Ravidas Government Polytechnic<br>
+                              Chakia Chandauli U.P. India.</p>
+                          </div>
+                      </div>
+                    {% endif %}
+                  </div></a><br><br>
+                  <a href="/teachers/">
+                  <div class="box" id="boxes">
+                      <div class="same" style="float: right;">
+                          <img src="{% static 'images/LOGO TEACHER.jpg'%}" alt="Teachers">
+                          <br><br><h3 id="aside">TEACHERS</h3>
+                      </div>
+                      <div class="diffrent" style="float: left;">
+                          <div class="text">
+                              <h1 class="head">OUR TEACHERS<h1>
+                              <p>Our honorable teachers are the guiding
+                                  light, turning knowledge into wisdom.<p>
+                          </div>
+                      </div>
+                  </div></a>
+                  <br><br>
+                  <a href="/events/">
+                  <div class="box" id="boxes">
+                      <div class="same" style="float: left;">
+                          <img src="{% static 'images/events.png'%}" alt="Events">
+                          <br><br><h3 id="aside">EVENTS</h3>
+                      </div>
+                      <div class="diffrent" style="float: right;">
+                          <div class="text">
+                              <h1 class="head">EVENTS<h1>
+                              <p>Student events are not just gatherings,
+                                  they are opportunities to learn, connect,
+                                  and grow.
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+                  </a>
+              </section>
+              <h3 id="toggleButton" class="btn">NOTICE</h3>
+              <br>
+              <aside id="noticeBoard" class="notice-board">
+                  <div class="IMPORTENT" id="boxes">
+                      <h4 id="aside">NOTICE BOARD</h4>
+                        <div class="notice">
+                            <ul class="marquee-up">
+                                {% for n in notices %}
+                                <li>{{ n.notice_content }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                  </div>
+                  <br>
+                  <div class="IMPORTENT" id="boxes">
+                      <h4 id="aside">IMPORTENT LINKS</h4>
+                        <div class="notice">
+                            <ul class="marquee-up">
+                                {% for n in links %}
+                                <li><a herf="{{n.links}}" target="_blank">{{n.view_content}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                  </div>
+              </aside>
+          </article>
+          <div class="container2">
+             {% for n in person %}
+              <div class="box2" id="boxes">
+                  <img src="{{ n.photo.url }}" alt="{{ n.filename }}">
+                  <br><br>
+                  <h3 id="aside">{{ n.name }}<br/>({{ n.post }})</h3>
+              </div>
+             {% endfor %}
+          </div>
+           <form class="signup-form box" id="boxes" method="POST" style="padding: 30px; width: 90%; margin:auto;">
+            {% csrf_token %}
+                <h2 style="text-align: center;">Complain & Feedback</h2>
+                
+                    <label for="Name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    
+                    <label for="Name">Email:</label>
+                    <input type="text" id="email" name="email" placeholder="Enter your email" required>
+                    <br>
+                    <input type="radio" value="Complain" name="option"  style="width: 20px; margin-top:30px;">Complain
+                    <input type="radio" value="Feedback" name="option" style="width: 20px; margin-bottom: 30px;" required>Feedback
+                    <br>
+                    <textarea id="textarea" name="description" placeholder="Write Complain or Feedback..." required></textarea>
+                
+                    <button type="submit" class="submit-btn">Submit</button>
+          </form>
+      </main><br><br>
+{% endblock %}

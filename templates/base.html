@@ -1,0 +1,41 @@
+{% load static %}
+<html>
+    <head>
+        <title>SRGP CHANDAULI - {{ title }}</title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <link id="theme-css" rel="stylesheet" href="{% static 'css/light.css' %}">
+        <link rel="stylesheet" href="{% static 'css/blur.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" href="{% static 'collage/1.jpg' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="{% static 'css/form.css' %}">
+        <script src="{% static 'js/massage.js' %}"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+        {% block extra_links %}{% endblock %}
+    </head>
+    <body>
+        <!-- Loading Icon (Initially visible) -->
+        <div id="loading-icon">
+            <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+        </div>
+        <!-- Main content (Initially hidden) -->
+        <div class="container-flex" id="main-content" style="display:none;">
+            {% include "header.html" %}
+            {% include "navbar.html" %}
+            {% block content %}
+            {% endblock %}
+            {% include "footer.html" %}
+        </div>
+    </body>
+    <script>
+        // Hide the loading icon and show the main content after a delay
+        window.addEventListener('load', function() {
+            document.getElementById('loading-icon').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        });
+    </script>
+</html>

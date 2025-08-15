@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_links %}
+<link rel="stylesheet" href="{% static 'css/about.css'%}">
+{% endblock %}
+{% block content %}
+      <main>
+        <div class="container">
+          {% for n in about %}
+            <div class="box" id="boxes">
+              <h2 align="center">{{n.title}}</h2>
+              <p>
+                {{n.desc | safe }}
+              </p>
+            </div>
+          {% endfor %}
+        </div>
+        <br />
+        <h3 align="center">Thank you for watching our website.</h3>
+        <br />
+        <br /><br />
+      </main>
+{% endblock %}

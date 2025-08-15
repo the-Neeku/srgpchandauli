@@ -1,0 +1,22 @@
+body {
+    background: #121212d8;
+}
+
+header {
+    color: black;
+}
+
+main {
+    color: white;
+}
+
+main div,
+main form {
+    background: none;
+    color: white;
+}
+
+#boxes {
+    background: #222121d8;
+    color: white;
+}

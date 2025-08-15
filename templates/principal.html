@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_links %}
+<link rel="stylesheet" href="{% static 'css/principal.css' %}">
+{% endblock %}
+{% block content %}
+      <main>
+        {% if principal_current %}
+        <div class="box" id="boxes">
+          <div class="profile">
+            <img src="{{ principal_current.photo.url }}" alt="{{ principal_current.filename }}" /><br />
+            <h1>{{ principal_current.name }}</h1>
+            <div id="aside">
+              <u>PRINCIPAL</u><br />SANT RAVIDAS GOVERNMENT POLYTECHNIC<br />CHAKIA
+              CHANDAULI
+            </div>
+          </div>
+          <div class="message">
+            <h1 align="center">Principal's Message</h1>
+            <p>
+              {{ principal_current.message | safe }}
+            </p>
+          </div>
+        </div>
+        {% endif%}
+        <br/><br/>
+        <div class="box1" id="boxes" style="margin: auto;">
+          <h1 align="center">LIST OF PRINCIPAL</h1>
+          <ol>
+            {% for n in principal %}
+              <li>{{n.name}} ({{n.post}}) {% if n.sec_post %} ({{n.sec_post}}){% endif %} - {{n.from_date | date:"d/m/20y"}} to {% if n.to_date %} {{n.to_date | date:"d/m/20y"}} {% else %} Present {% endif %} </li>
+            {% endfor %}
+          </ol>
+        </div>
+      </main>
+      <br /><br />
+{% endblock %}

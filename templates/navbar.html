@@ -1,0 +1,79 @@
+{% load static %}
+<div class="custom-navbar-wrapper">
+  <div class="custom-navbar">
+    <div class="custom-hamburger" id="hamburgerIcon" onclick="toggleMenu()">
+      &#9776;
+    </div>
+    <br /><br />
+    <ul class="custom-nav-links" id="navLinks">
+      
+      <!-- Home -->
+      <li>
+        <a class="{% if request.path == '/' or active == 'home' %}active{% endif %}" href="/">HOME</a>
+      </li>
+
+      <!-- Facility -->
+      <li>
+        <a class="{% if request.path == '/facility/' %}active{% endif %}" href="/facility/">FACILITY</a>
+      </li>
+
+      <!-- Registration Dropdown -->
+      <li>
+        <a class="{% if active == 'Registration' or request.path == '/student-registration/' or request.path == '/institute-signup/' %}active{% endif %}">
+          REGISTRATION
+        </a>
+        <div class="custom-dropdown">
+          <ul>
+            <li><a class="{% if request.path == '/student-registration/' %}active{% endif %}" href="/student-registration/">STUDENT REGISTRATION</a></li>
+            <li><a class="{% if request.path == '/institute-signup/' %}active{% endif %}" href="/institute-signup/">TEACHER REGISTRATION</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <!-- Login Dropdown -->
+      <li>
+        <a class="{% if request.user.is_authenticated or request.path == '/student-login/' or request.path == '/institute-login/' %}active{% endif %}">
+          LOG IN
+        </a>
+        <div class="custom-dropdown">
+          <ul>
+            <!-- Student Login -->
+            {% if request.user.is_authenticated and request.session.user_type == 'student' %}
+              <li><a class="active" href="/student-login/">STUDENT LOGIN</a></li>
+            {% else %}
+              <li><a class="{% if request.path == '/student-login/' %}active{% endif %}" href="/student-login/">STUDENT LOGIN</a></li>
+            {% endif %}
+
+            <!-- Institute Login -->
+            {% if request.user.is_authenticated and request.session.user_type == 'institute' %}
+              <li><a class="active" href="/institute-login/">INSTITUTE LOGIN</a></li>
+            {% else %}
+              <li><a class="{% if request.path == '/institute-login/' %}active{% endif %}" href="/institute-login/">INSTITUTE LOGIN</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </li>
+
+      <!-- Courses Dropdown -->
+      <li>
+        <a class="{% if active == 'course' %}active{% endif %}">COURSES</a>
+        <div class="custom-dropdown">
+          <ul>
+            <li><a class="{% if request.path == '/course-cse/' %}active{% endif %}" href="/course-cse/">COMPUTER SCIENCE & ENGINEERING</a></li>
+            <li><a class="{% if request.path == '/course-ece/' %}active{% endif %}" href="/course-ece/">ELECTRONICS ENGINEERING</a></li>
+            <li><a class="{% if request.path == '/course-ice/' %}active{% endif %}" href="/course-ice/">INSTRUMENTATION & CONTROL</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <!-- Contact & About -->
+      <li><a class="{% if request.path == '/contact/' %}active{% endif %}" href="/contact/">CONTACT US</a></li>
+      <li><a class="{% if request.path == '/about/' %}active{% endif %}" href="/about/">ABOUT US</a></li>
+
+    </ul>
+  </div>
+
+  <div class="custom-icon">
+    <img src="{% static 'images/moon.png' %}" id="icon" onclick="toggleTheme()" />
+  </div>
+</div>

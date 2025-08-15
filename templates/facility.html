@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_links %}
+<link rel="stylesheet" href="{% static 'css/facility.css'%}">
+{% endblock %}
+{% block content %}
+            <main>
+                <div class="container">
+                    <h1 align="center"><u>OUR FACILITY</u></h1>
+                    <br><br>
+                    {% for n in facility %}
+                        <div class="box" id="boxes">
+                            <div class="text" style="float: {% if forloop.counter0|divisibleby:'2' %}left{% else %}right{% endif %};">
+                                <h1>{{ n.title|safe }}</h1>
+                            </div>
+                            <div class="image" style="float: {% if forloop.counter0|divisibleby:'2' %}right{% else %}left{% endif %};">
+                                <img src="{{ n.image.url }}" alt="{{ n.filename }}">
+                            </div>
+                        </div><br>
+                    {% endfor %}
+                </div><br><br>
+            </main><br><br>
+{% endblock %}

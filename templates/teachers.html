@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block extra_links %}
+<link rel="stylesheet" href="../static/css/teachers.css">
+{% endblock %}
+{% block content %}
+
+      <main>
+        <h1 align="center">OUR TEACHER's</h1>
+        {% if cs %}
+        <h2 align="center">Computer Science & Engineering</h2>
+        <div class="container">
+          {% for n in cs %}
+          <div class="box" id="boxes">
+            <img src="{{n.photo.url}}" alt="{{n.filename}}" />
+            <p>
+              {{n.name}}<br /><br />
+              Post: {{n.post}}<br />
+              Qualification: {{n.Qualification}}
+            </p>
+          </div>
+          {% endfor %}
+        {% endif %}
+        </div>
+        {% if ec %}
+        <h2 align="center">Electronics Engineering</h2>
+        <div class="container">
+          {% for n in ec %}
+          <div class="box" id="boxes">
+            <img
+              src="{{n.photo.url}}"
+              alt="{{n.name}}"
+            />
+            <p>
+              {{n.name}}<br /><br />
+              Post: {{n.post}}<br />
+              Qualification: {{n.Qualification}}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if ic %}
+          <h2 align="center">Instrumentation and Control</h2>
+        <div class="container">
+          {% for n in ic %}
+          <div class="box" id="boxes">
+            <img
+              src="{{n.photo.url}}"
+              alt="{{n.name}}"
+            />
+            <p>
+              {{n.name}}<br /><br />
+              Post: {{n.post}}<br />
+              Qualification: {{n.Qualification}}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if gs %}
+          <h2 align="center">Applied Science and Humanities</h2>
+        <div class="container">
+          {% for n in gs %}
+          <div class="box" id="boxes">
+            <img
+              src="{{n.photo.url}}"
+              alt="{{n.name}}"
+            />
+            <p>
+              {{n.name}}<br /><br />
+              Post: {{n.post}}<br />
+              Qualification: {{n.Qualification}}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+	      {% endif %}
+        {% if lib %}
+          <h2 align="center">Librarian</h2>
+        <div class="container">
+          {% for n in lib %}
+          <div class="box" id="boxes">
+            <img src="{{n.photo.url}}" alt="{{n.name}}" />
+            <p>
+              {{n.name}}<br /><br />
+              Post: {{n.post}}<br />
+              Qualification: {{n.Qualification}}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if work %}
+          <h2 align="center">Applied Science and Humanities</h2>
+        <div class="container">
+          {% for n in work %}
+          <div class="box" id="boxes">
+            <img
+              src="{{n.photo.url}}"
+              alt="{{n.name}}"
+            />
+            <p>
+              {{n.name}}<br /><br />
+              Post: {{n.post}}<br />
+              Qualification: {{n.Qualification}}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+	      {% endif %}
+      </main>
+      <br /><br />
+      {% endblock %}

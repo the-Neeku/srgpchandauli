@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_links %}
+<link rel="stylesheet" href="{% static 'css/events.css'%}">
+{% endblock %}
+{% block content %}
+      <main>
+            {% for folder, images in galleries.items %}
+            <div class="row">
+              <div class="col-sm-11 mx-auto mt-5 mb-5" id="boxes" style="box-shadow: 5px 10px 25px #000; padding: 30px; width: 90%; margin:auto; border-radius: 10px;">
+                  <h2 align="center">{{ folder|title }}</h2>
+                  <div style="display: flex; flex-wrap: wrap; margin: auto;">
+                  {% for img in images %}
+                        <div style="margin: 10px;">
+                        <img src="{{ img.events_photo.url }}" width="200" alt="{{ img.filename }}">
+                        </div>
+                  {% endfor %}
+                  </div>
+              </div>
+            </div>
+            {% endfor %}
+      </main>
+{% endblock %}
