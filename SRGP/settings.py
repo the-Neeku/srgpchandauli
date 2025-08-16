@@ -17,6 +17,9 @@ ALLOWED_HOSTS = [
 # Application definition
 INSTALLED_APPS = [
     'MAIN_APP',
+    'filebrowser',
+    'grappelli',
+    'tinymce',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
